@@ -16,5 +16,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/anvaka/allnpm"
+  },
+  "dependencies": {
+    "ngraph.graph": "0.0.2",
+    "ngraph.serialization": "0.0.3"
   }
 }
