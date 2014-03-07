@@ -1,6 +1,7 @@
-var fileName = process.argv[2] || 'byField';
-var fs = require('fs');
-var packages = JSON.parse(fs.readFileSync(fileName, 'utf8')).rows;
+/**
+ * Converts npm registry `byField` response into serialized braph
+ */
+var packages = require('./lib/extractByFieldRows')(process.argv[2] || 'byField');
 
 var graph = require('ngraph.graph')();
 packages.forEach(function (pkg) {
