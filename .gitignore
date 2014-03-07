@@ -11,6 +11,7 @@ byField
 pids
 logs
 results
+2d
 
 npm-debug.log
 node_modules
