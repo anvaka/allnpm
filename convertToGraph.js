@@ -1,7 +1,7 @@
 /**
  * Converts npm registry `byField` response into serialized braph
  */
-var packages = require('./lib/extractByFieldRows')(process.argv[2] || 'byField');
+var packages = require('./lib/readJSON')(process.argv[2] || 'byField').rows;
 
 var graph = require('ngraph.graph')();
 packages.forEach(function (pkg) {
