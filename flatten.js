@@ -47,7 +47,7 @@ packages.forEach(function (pkg, srcIdx) {
   }
 });
 
-console.log('var graphSrc = ' + JSON.stringify(nodes));
+console.log(JSON.stringify(nodes));
 
 function getNodePositions(fileName) {
   var positions = readJSON(fileName);
