@@ -1,6 +1,6 @@
 # allnpm
 
-Graph generator for entire npm registry. 
+Graph generator for entire npm registry. See actual visualization here: [NPM Universe](http://anvaka.github.io/allnpmviz.an/)
 
 # how to use it?
 
