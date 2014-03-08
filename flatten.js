@@ -6,6 +6,7 @@ var packages = readJSON(process.argv[2] || 'byField').rows;
 var nodeToPosition = getNodePositions(process.argv[3] || '60.pos');
 var nodes = [];
 var nodeIdToIdx = {};
+var haveTests = [];
 
 packages.forEach(function (pkg, idx) {
   var pos = nodeToPosition[pkg.id];
@@ -24,6 +25,9 @@ packages.forEach(function (pkg, idx) {
   var author = getAuthor(pkgInfo.author);
   if (author) {
     nodeInfo.a = author;
+  }
+  if (hasTests(pkgInfo.scripts && pkgInfo.scripts.test)) {
+    haveTests.push(idx);
   }
   nodes.push(nodeInfo);
   nodeIdToIdx[pkg.id] = idx;
@@ -48,6 +52,7 @@ packages.forEach(function (pkg, srcIdx) {
 });
 
 console.log(JSON.stringify(nodes));
+//console.log(JSON.stringify(haveTests));
 
 function getNodePositions(fileName) {
   var positions = readJSON(fileName);
@@ -75,4 +80,10 @@ function getAuthor(author) {
   if (!author) return;
   if (typeof author === 'string') return author;
   if (typeof author.name === 'string') return author.name;
+}
+
+function hasTests(test) {
+  if (typeof test === 'string') {
+    return test.indexOf('no test specified') === -1;
+  }
 }
