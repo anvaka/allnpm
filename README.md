@@ -20,7 +20,7 @@ Now `graph.js` contains information about graph nodes/positions. Each element in
 {"id":"pkgName","pos":{"x":-63,"y":681},"a":"Author","d":[dependency1, dependency2, ...]}
 ```
 
-The format is target to miminize file size. It could be stored even smaller via binary adjacency list. For now I keep it human readable.
+The format is targeted to miminize file size. It could be made even smaller via binary adjacency list. For now I keep it human readable.
 
 
 # license
