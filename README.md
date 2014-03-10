@@ -2,7 +2,9 @@
 
 Graph generator of entire npm registry. See actual visualization here: [NPM Universe](http://anvaka.github.io/allnpmviz.an/)
 
-[![npm march 2014](https://raw.github.com/anvaka/allnpmviz.an/master/assets/npm_mar_2014.png)](http://anvaka.github.io/allnpmviz.an/)
+<a href="http://anvaka.github.io/allnpmviz.an/" target="_blank"><img src="https://raw.github.com/anvaka/allnpmviz.an/master/assets/npm_mar_2014.png" width='233px'/></a>
+
+[![npm march 2014](https://raw.github.com/anvaka/allnpmviz.an/master/assets/all_npm_asteroids_field.png)](http://anvaka.github.io/allnpmviz.an/)
 
 Use mouse wheel to zoom in/zoom out.
 
