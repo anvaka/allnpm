@@ -4,6 +4,7 @@
 var readJSON = require('./lib/readJSON');
 var packages = readJSON(process.argv[2] || 'byField').rows;
 var nodeToPosition = getNodePositions(process.argv[3] || '60.pos');
+var wantTests = process.argv[4];
 var nodes = [];
 var nodeIdToIdx = {};
 var haveTests = [];
@@ -51,8 +52,11 @@ packages.forEach(function (pkg, srcIdx) {
   }
 });
 
-console.log(JSON.stringify(nodes));
-//console.log(JSON.stringify(haveTests));
+if (wantTests) {
+  console.log(JSON.stringify(haveTests));
+} else {
+  console.log(JSON.stringify(nodes));
+}
 
 function getNodePositions(fileName) {
   var positions = readJSON(fileName);
