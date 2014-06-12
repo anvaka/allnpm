@@ -20,6 +20,6 @@
   "dependencies": {
     "ngraph.graph": "~0.0.3",
     "ngraph.serialization": "0.0.3",
-    "ngraph.forcelayout": "0.0.8"
+    "ngraph.forcelayout": "0.0.10"
   }
 }
