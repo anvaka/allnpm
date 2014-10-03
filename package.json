@@ -18,8 +18,8 @@
     "url": "https://github.com/anvaka/allnpm"
   },
   "dependencies": {
-    "ngraph.graph": "~0.0.3",
+    "ngraph.graph": "0.0.3",
     "ngraph.serialization": "0.0.3",
-    "ngraph.forcelayout": "0.0.10"
+    "ngraph.forcelayout": "0.0.11"
   }
 }
