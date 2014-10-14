@@ -6,6 +6,8 @@ lib-cov
 *.out
 *.pid
 *.gz
+*.pos3d
+*.pos
 
 byField
 pids
