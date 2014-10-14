@@ -12,6 +12,7 @@ pids
 logs
 results
 2d
+3d
 
 npm-debug.log
 node_modules

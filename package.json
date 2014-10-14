@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "ngraph.forcelayout": "0.0.12",
-    "ngraph.forcelayout3d": "0.0.4",
+    "ngraph.forcelayout3d": "0.0.5",
     "ngraph.graph": "0.0.3",
     "ngraph.serialization": "0.0.3"
   }
