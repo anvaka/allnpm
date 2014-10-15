@@ -36,15 +36,20 @@ function onDocumentMouseMove(event) {
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
+var seenPositions = {};
+
 download("/positions.bin", function(buffer) {
   var positions = new Int32Array(buffer);
 
   for (var i = 0; i < positions.length; i += 3) {
-    nodePositions.push({
+    var pos = {
       x: positions[i],
       y: positions[i + 1],
       z: positions[i + 2]
-    });
+    };
+    nodePositions.push(pos);
+    var key = pos.x + '' + pos.y + '' + pos.z;
+    seenPositions[key] = 1;
   }
   //renderNodes(nodePositions);
 });
@@ -53,7 +58,6 @@ download('./links.bin', function(buffer) {
   var results = [];
   var arr = new Int32Array(buffer);
   var lastFromId;
-  var seen = [];
   for (var i = 0; i < arr.length; i++) {
     var id = arr[i];
     if (id < 0) {
@@ -65,15 +69,14 @@ download('./links.bin', function(buffer) {
       var toNode = nodePositions[id];
       results.push([fromNode.x, fromNode.y, fromNode.z, toNode.x, toNode.y, toNode.z]);
     }
-    seen[id] = ((seen[id] || 0) + 1);
   }
 
-  renderLinks(results);
-  renderNodes(nodePositions);
+  //renderLinks(results);
 });
 
-downloadJson('./labels.json', function (labels) {
+downloadJson('./labels.json', function(labels) {
   allLabels = labels;
+  renderNodes(nodePositions)
 });
 
 function animate() {
@@ -139,13 +142,15 @@ function renderNodes(positions) {
   var colors = new Float32Array(total * 3);
 
   var color = new THREE.Color();
-  for (var i = 0; i < total; i += 3) {
-    points[i] = positions[i / 3].x;
-    points[i + 1] = positions[i / 3].y;
-    points[i + 2] = positions[i / 3].z;
-    colors[i] = 0xff;
-    colors[i + 1] = 0xff;
-    colors[i + 2] = 0xff;
+  debugger;
+  for (var i = 0; i < total; i++) {
+    var idx = i * 3;
+    points[idx] = positions[i].x;
+    points[idx + 1] = positions[i].y;
+    points[idx + 2] = positions[i].z;
+    colors[idx] = 0xff;
+    colors[idx + 1] = 0xff;
+    colors[idx + 2] = 0xff;
   }
 
   geometry.addAttribute('position', new THREE.BufferAttribute(points, 3));
