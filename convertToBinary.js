@@ -7,6 +7,7 @@ var nodes = JSON.parse(fs.readFileSync(posFileName, 'utf8'));
 
 savePositions(nodes);
 saveLinks(nodes);
+saveLabels(nodes);
 
 function savePositions(nodes) {
   var buf = new Buffer(nodes.length * 4 * 3);
@@ -18,6 +19,14 @@ function savePositions(nodes) {
   });
 
   fs.writeFileSync('positions.bin', buf);
+}
+
+function saveLabels(nodes) {
+  var labels = [];
+  nodes.forEach(function(element, i) {
+    labels.push(element.node);
+  });
+  fs.writeFileSync('labels.json', JSON.stringify(labels), 'utf8');
 }
 
 function saveLinks(nodes) {
