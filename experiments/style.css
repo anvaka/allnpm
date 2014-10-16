@@ -8,3 +8,14 @@ canvas {
   padding: 0;
   margin: 0; 
 }
+
+.message {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 18px;
+  background: black;
+  padding: 10px;
+}

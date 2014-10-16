@@ -2,7 +2,7 @@ var nodePositions = [];
 var links = [];
 var scene = new THREE.Scene();
 scene.sortObjects = false;
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 20000);
+var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 20000);
 var renderer = new THREE.WebGLRenderer();
 var particleSystem;
 
@@ -14,15 +14,16 @@ camera.position.y = 9000;
 camera.lookAt(new THREE.Vector3(1, 0, 0));
 var allLabels;
 
-controls = new THREE.FirstPersonControls(camera);
-
-controls.movementSpeed = 1000;
-controls.lookSpeed = 0.125;
-controls.lookVertical = true;
 var mouse = {
   x: 0,
   y: 0
 };
+
+controls = new THREE.FlyControls(camera);
+controls.movementSpeed = 1000;
+controls.rollSpeed = Math.PI / 14;
+controls.autoForward = false;
+controls.dragToLook = true;
 var projector = new THREE.Projector();
 var raycaster = new THREE.Raycaster();
 raycaster.params.PointCloud.threshold = 10;
@@ -76,7 +77,7 @@ download('./links.bin', function(buffer) {
 
 downloadJson('./labels.json', function(labels) {
   allLabels = labels;
-  renderNodes(nodePositions)
+  renderNodes(nodePositions);
 });
 
 function animate() {
@@ -92,8 +93,9 @@ function animate() {
     raycaster.ray.set(camera.position, vector.sub(camera.position).normalize());
     intersects = raycaster.intersectObject(particleSystem);
 
-    if (intersects.length > 0) {
-      console.log('intersecti ', intersects[0].index);
+    if (intersects.length > 0 && allLabels) {
+      var id = intersects[0].index;
+      document.querySelector('.message').innerText = allLabels[id];
     }
   }
 }
@@ -142,7 +144,6 @@ function renderNodes(positions) {
   var colors = new Float32Array(total * 3);
 
   var color = new THREE.Color();
-  debugger;
   for (var i = 0; i < total; i++) {
     var idx = i * 3;
     points[idx] = positions[i].x;
