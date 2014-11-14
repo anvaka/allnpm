@@ -1,7 +1,23 @@
+/**
+ * This file generates binary files for https://github.com/anvaka/allnpmviz3d:
+ *
+ * + links.bin
+ * + positions.bin
+ * + labels.json
+ */
 var fs = require('fs');
 
 var posFileName = process.argv[2];
-var graphFileName = 'graph.out';
+var graphFileName = process.argv[3];
+
+if (!posFileName) {
+  console.log('I need positition file `*.pos3d as second argument`');
+  return -1;
+}
+if (!graphFileName) {
+  console.log('I need graph file, produced by convertToGraph.js file');
+  return -2;
+}
 
 var nodes = JSON.parse(fs.readFileSync(posFileName, 'utf8'));
 
