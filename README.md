@@ -2,12 +2,15 @@
 
 Graph generator of entire npm registry. See actual visualizations here:
 
-* [3D NPM Universe](http://anvaka.github.io/allnpmviz3d/)
+[3D NPM Universe](http://anvaka.github.io/allnpmviz3d/)
+=========================================================
 
 ![Main cluster](https://raw.githubusercontent.com/anvaka/allnpmviz3d/master/images/npm-all.png)
 ![Main cluster - no links](https://raw.githubusercontent.com/anvaka/allnpmviz3d/master/images/mushrooms.png)
 
-* [2D NPM Universe](http://anvaka.github.io/allnpmviz.an/)
+[2D NPM Universe](http://anvaka.github.io/allnpmviz.an/)
+=========================================================
+
 <a href="http://anvaka.github.io/allnpmviz.an/" target="_blank"><img src="https://raw.github.com/anvaka/allnpmviz.an/master/assets/npm_mar_2014.png" width='233px'/></a>
 
 [![npm march 2014](https://raw.github.com/anvaka/allnpmviz.an/master/assets/all_npm_asteroids_field.png)](http://anvaka.github.io/allnpmviz.an/)
