@@ -30,6 +30,8 @@ layouter (ctrl + c).
 
 # Generating for 2D
 
+This is instructions how to generate data for [2D visualization](https://github.com/anvaka/allnpmviz.an)
+
 1. Download npm metadata using `downloadGraph.sh` file. If you don't have wget simply save response to `byField` file. I do not list url directly here, since response is huge (~124MB).
 2. Convert response to graph: `node convertToGraph.js byField > graph.out`
 3. Run layouter: `node layout.js graph.out`. This will take you a while. Layouter saves each 60th iteration into a `.pos` file.
@@ -42,8 +44,7 @@ Now `graph.js` contains information about graph nodes/positions. Each element in
 {"id":"pkgName","pos":{"x":-63,"y":681},"a":"Author","d":[dependency1, dependency2, ...]}
 ```
 
-Note: format of 2d is currently incompatible with 3D.
-
+Note: format of 2D is currently incompatible with 3D.
 
 # license
 
