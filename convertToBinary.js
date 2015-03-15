@@ -58,6 +58,7 @@ function saveLinks(nodes) {
   graph.links.forEach(function (link) {
     if (typeof nodeMap[link.fromId] !== 'number') {
       console.log('skipping', link);
+      return;
     }
 
     var store = linkMap[link.fromId];
@@ -67,6 +68,7 @@ function saveLinks(nodes) {
     var nodeIdx = nodeMap[link.toId];
     if (typeof nodeIdx !== 'number') {
       console.log('skipping', link);
+      return;
     }
 
     store.push(nodeIdx);
