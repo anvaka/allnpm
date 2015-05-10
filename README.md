@@ -20,13 +20,13 @@ Graph generator of entire npm registry. See actual visualizations here:
 This is instructions how to generate data for [3D visualization](https://github.com/anvaka/allnpmviz3d)
 
 1. Download npm metadata using `downloadGraph.sh` file. If you don't have wget simply save response to `byField` file. I do not list url directly here, since response is huge (~124MB).
-2. Convert response to graph: `node convertToGraph.js byField > graph.out`
-3. Run 3D layouter: `node layout3d.js graph.out`. This will take you a while.
-Layouter saves each 5th iteration into a `.pos3d` file.
-4. Once you get to `100.pos3d` (500 iterations, takes several hours) you can cancel
-layouter (ctrl + c).
-5. Produce data files by running `node convertToBinary.js ./100.pos3d graph.out`
-6. Produced files should be placed into `src/data` of [allnpmviz3d](https://github.com/anvaka/allnpmviz3d)
+2. Run the layouter: `node layout3d.js`. This will take a while (~1-2 houres).
+3. Produce data files by running `node toBinary.js`
+4. Produced files should be placed into `src/data` of [allnpmviz3d](https://github.com/anvaka/allnpmviz3d). E.g.:
+
+```
+cp ./data/labels.json ./data/links.bin ./data/positions.bin ../allnpmviz3d/src/data/
+```
 
 # Generating for 2D
 

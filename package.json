@@ -20,7 +20,9 @@
   "dependencies": {
     "ngraph.forcelayout": "0.0.12",
     "ngraph.forcelayout3d": "0.0.5",
-    "ngraph.graph": "0.0.3",
-    "ngraph.serialization": "0.0.3"
+    "ngraph.graph": "0.0.11",
+    "ngraph.offline.layout": "^1.0.0",
+    "ngraph.serialization": "0.0.7",
+    "ngraph.tobinary": "^1.0.0"
   }
 }
