@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "nangraph": "^1.2.0",
+    "nanlayout": "^2.0.3"
+  }
+}
