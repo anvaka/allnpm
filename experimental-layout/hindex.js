@@ -1,5 +1,6 @@
 var path = require('path');
 var save = require('ngraph.tobinary');
+var createLayout = require('hlayout');
 var fs = require('fs');
 var fileName = path.join(__dirname, '..', 'byField');
 
@@ -8,7 +9,7 @@ require('../lib/loadGraph.js')(performLayout, fileName);
 
 function performLayout(graph) {
   console.log('Graph parsed. Found ' + graph.getNodesCount() + ' nodes and ' + graph.getLinksCount() + ' edges');
-  var layout = require('hlayout')(graph);
+  var layout = createLayout(graph);
   layout.run();
 
   console.log('Layout completed. Saving to binary format');
