@@ -14,9 +14,32 @@ function performLayout(graph) {
 
   console.log('Layout completed. Saving to binary format');
 
+  var topLevelGroups = layout.getGroupsAtLevel(0);
+  saveGroups(topLevelGroups);
   saveIteration('positions2d');
   save(graph, { outDir: './data' });
   console.log('Done.');
+
+  function saveGroups(topLevelGroups) {
+    var fname = path.join('data', 'groups.bin');
+    var nodesLength = graph.getNodesCount();
+    var buf = new Buffer(nodesLength * 2);
+    var max = Math.pow(2, 16) - 1;
+    var i = 0;
+
+    graph.forEachNode(function(node) {
+      var idx = i * 2;
+      var groupId = topLevelGroups[node.id];
+      if (groupId >= max) {
+        throw new Error('Too many groups');
+      }
+
+      buf.writeInt16LE(groupId, idx);
+      i += 1;
+    });
+
+    fs.writeFileSync(fname, buf);
+  }
 
   function saveIteration(name) {
     var fname = path.join('data', name + '.bin');
