@@ -7,26 +7,20 @@ var detectClusters = require('ngraph.louvain/native.js').fromNgraph;
 var toProtobuf = require('ngraph.toprotobuf');
 var ProtoBuf = require('protobufjs');
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 
 module.exports = saveClusters;
 
-var builder = ProtoBuf.protoFromString([
-'syntax = "proto3";',
-'',
-'message NodeCluster {',
-  'string nodeId = 1;',
-  'int32 clusterId = 2;',
-'}',
-'',
-'message Clusters {',
-'  repeated NodeCluster records = 1;',
-'}',
-].join('\n'));
+var builder = ProtoBuf.protoFromString(getClustersProtoString());
 
 var Clusters = builder.build('Clusters');
 var Record = builder.build('NodeCluster');
 
 function saveClusters(graph, outDir) {
+  if (!fs.existsSync(outDir)) {
+    mkdirp.sync(outDir);
+  }
+
   var currentLayer = 0;
   var clusters;
 
@@ -60,6 +54,7 @@ function saveClusters(graph, outDir) {
 
     var clusters = new Clusters();
     clusters.records = records;
+    console.log('records: ' + records.length);
     saveProtoObject(clusters, path.join(dir, 'clusters.pb'));
   }
 }
@@ -67,11 +62,27 @@ function saveClusters(graph, outDir) {
 function saveProtoObject(object, fileName) {
   var arrayBuffer = object.toArrayBuffer();
   // Turns out node 5.1 crashes when array buffer has length 0.
-  var nodeBuffer = (arrayBuffer.length > 0) ? new Buffer(arrayBuffer) : new Buffer(0);
+  var nodeBuffer = (arrayBuffer.byteLength > 0) ? new Buffer(arrayBuffer) : new Buffer(0);
   fs.writeFileSync(fileName, nodeBuffer);
+  fs.writeFileSync(fileName + '.proto', getClustersProtoString(), 'utf8');
 }
 
 function number(x) {
   var result = Number.parseInt(x);
   return result;
+}
+
+function getClustersProtoString() {
+  return [
+    'syntax = "proto3";',
+    '',
+    'message NodeCluster {',
+    '  string nodeId = 1;',
+    '  int32 clusterId = 2;',
+    '}',
+    '',
+    'message Clusters {',
+    '  repeated NodeCluster records = 1;',
+    '}',
+  ].join('\n');
 }
