@@ -26,5 +26,8 @@
     "ngraph.offline.layout": "^1.0.0",
     "ngraph.serialization": "0.0.7",
     "ngraph.tobinary": "^1.0.0"
+  },
+  "devDependencies": {
+    "protobufjs": "^5.0.1"
   }
 }
